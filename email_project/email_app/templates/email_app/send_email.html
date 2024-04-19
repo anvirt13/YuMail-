@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YuMail</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script type="text/javascript">
+        window.onload = function() {
+            {% if message %}
+                alert("{{ message }}");
+            {% endif %}
+        }
+    </script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-brand">
+            <h1>YuMail</h1>
+        </div>
+    </header>
+    <div class="email-form-container">
+        <h2>Send Email</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
